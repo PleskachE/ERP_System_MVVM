@@ -1,0 +1,233 @@
+﻿<Window
+    x:Class="ERP_System_MVVM.MainWindow"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="clr-namespace:ERP_System_MVVM.ViewModel"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    Title="ERP_System"
+    Width="1200"
+    Height="500"
+    MinWidth="1200"
+    mc:Ignorable="d">
+    <Window.DataContext>
+        <local:MainViewModel />
+    </Window.DataContext>
+
+
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition />
+            <ColumnDefinition />
+        </Grid.ColumnDefinitions>
+        <Grid Grid.Column="0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            <TextBox Grid.Row="0" Text="{Binding Path=Filter, UpdateSourceTrigger=PropertyChanged}" />
+            <DataGrid
+                Grid.Row="1"
+                AutoGenerateColumns="False"
+                ItemsSource="{Binding AllCVSWorkers}"
+                SelectedItem="{Binding CurrentWorker, Mode=TwoWay}">
+                <DataGrid.Columns>
+                    <DataGridTemplateColumn>
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <Image Source="{Binding Path=Photo}" />
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                    <DataGridTemplateColumn SortMemberPath="Name">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding Path=Name}" />
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                    <DataGridTemplateColumn SortMemberPath="Surname">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding Path=Surname}" />
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                    <DataGridTemplateColumn SortMemberPath="Position">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding Path=Position}" />
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                </DataGrid.Columns>
+            </DataGrid>
+        </Grid>
+        <Grid Grid.Column="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <Grid Grid.Row="0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="auto" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <StackPanel Grid.Column="0" Orientation="Vertical">
+                    <Image MinHeight="150" Source="{Binding CurrentWorker.Photo}" />
+                    <Grid>
+                        <ProgressBar
+                            MinWidth="150"
+                            Maximum="100"
+                            Minimum="0"
+                            Value="{Binding CurrentWorker.Rating}" />
+                        <TextBlock
+                            HorizontalAlignment="Center"
+                            VerticalAlignment="Center"
+                            Text="{Binding CurrentWorker.Rating, StringFormat={}{0:0}%}" />
+                    </Grid>
+                    <TextBlock Text="{Binding CurrentWorker.Name}" />
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="Id:" />
+                        <TextBlock Text="{Binding CurrentWorker.Id}" />
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="Birthday" />
+                        <TextBlock Text="{Binding CurrentWorker.DateOfBirth}" />
+                    </StackPanel>
+                </StackPanel>
+                <StackPanel Grid.Column="1" Orientation="Vertical">
+                    <TextBlock Text="Skills" />
+                    <StackPanel HorizontalAlignment="Right" Orientation="Horizontal">
+                        <TextBlock Text="Development" />
+                        <Grid>
+                            <ProgressBar
+                                MinWidth="150"
+                                Maximum="100"
+                                Minimum="0"
+                                Value="{Binding CurrentWorker.GetSkills.Development}" />
+                            <TextBlock
+                                HorizontalAlignment="Center"
+                                VerticalAlignment="Center"
+                                Text="{Binding CurrentWorker.GetSkills.Development, StringFormat={}{0:0}%}" />
+                        </Grid>
+                    </StackPanel>
+                    <StackPanel HorizontalAlignment="Right" Orientation="Horizontal">
+                        <TextBlock Text="ManagerialEffectiveness" />
+                        <Grid>
+                            <ProgressBar
+                                MinWidth="150"
+                                Maximum="100"
+                                Minimum="0"
+                                Value="{Binding CurrentWorker.GetSkills.ManagerialEffectiveness}" />
+                            <TextBlock
+                                HorizontalAlignment="Center"
+                                VerticalAlignment="Center"
+                                Text="{Binding CurrentWorker.GetSkills.ManagerialEffectiveness, StringFormat={}{0:0}%}" />
+                        </Grid>
+                    </StackPanel>
+                    <StackPanel HorizontalAlignment="Right" Orientation="Horizontal">
+                        <TextBlock Text="PercentageSuccessfullyCompletedProjects" />
+                        <Grid>
+                            <ProgressBar
+                                MinWidth="150"
+                                Maximum="100"
+                                Minimum="0"
+                                Value="{Binding CurrentWorker.GetSkills.PercentageSuccessfullyCompletedProjects}" />
+                            <TextBlock
+                                HorizontalAlignment="Center"
+                                VerticalAlignment="Center"
+                                Text="{Binding CurrentWorker.GetSkills.PercentageSuccessfullyCompletedProjects, StringFormat={}{0:0}%}" />
+                        </Grid>
+                    </StackPanel>
+                    <StackPanel HorizontalAlignment="Right" Orientation="Horizontal">
+                        <TextBlock Text="Productivity" />
+                        <Grid>
+                            <ProgressBar
+                                MinWidth="150"
+                                Maximum="100"
+                                Minimum="0"
+                                Value="{Binding CurrentWorker.GetSkills.Productivity}" />
+                            <TextBlock
+                                HorizontalAlignment="Center"
+                                VerticalAlignment="Center"
+                                Text="{Binding CurrentWorker.GetSkills.Productivity, StringFormat={}{0:0}%}" />
+                        </Grid>
+                    </StackPanel>
+                    <StackPanel HorizontalAlignment="Right" Orientation="Horizontal">
+                        <TextBlock Text="TeamWork" />
+                        <Grid>
+                            <ProgressBar
+                                MinWidth="150"
+                                Maximum="100"
+                                Minimum="0"
+                                Value="{Binding CurrentWorker.GetSkills.TeamWork}" />
+                            <TextBlock
+                                HorizontalAlignment="Center"
+                                VerticalAlignment="Center"
+                                Text="{Binding CurrentWorker.GetSkills.TeamWork, StringFormat={}{0:0}%}" />
+                        </Grid>
+                    </StackPanel>
+                </StackPanel>
+            </Grid>
+            <StackPanel Grid.Row="1" Orientation="Horizontal">
+                <Button Margin="5" 
+                        Content="Remove"
+                        Command="{Binding RemoveWorkerCommand}"/>
+                <Button Margin="5" Content="AddNewWorker" Command="{Binding AddWorkerCommand}"/>
+                <Button Margin="5"/>
+            </StackPanel>
+            <DataGrid
+                Grid.Row="2"
+                AutoGenerateColumns="False"
+                ItemsSource="{Binding CurrentProjects}">
+                <DataGrid.Columns>
+                    <DataGridTemplateColumn>
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding Id}" />
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                    <DataGridTemplateColumn>
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding Name}" />
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                    <DataGridTemplateColumn>
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding Client}" />
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                    <DataGridTemplateColumn>
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding StartDate}" />
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                    <DataGridTemplateColumn>
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding EndDate}" />
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                    <DataGridTemplateColumn>
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding PercentageCompletion}" />
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                </DataGrid.Columns>
+            </DataGrid>
+        </Grid>
+    </Grid>
+</Window>
