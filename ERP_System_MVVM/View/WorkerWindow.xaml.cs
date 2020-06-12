@@ -11,7 +11,6 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
 
 namespace ERP_System_MVVM.View
@@ -19,20 +18,20 @@ namespace ERP_System_MVVM.View
     /// <summary>
     /// Логика взаимодействия для WorkerWindow.xaml
     /// </summary>
-    public partial class WorkerWindow : UserControl
-    {
-        public RelayCommand DialogCommand { get; set; }
-        public WorkerWindow()
-        {
-            InitializeComponent();
-        }
-        private void Ok_OnClick(object sender, RoutedEventArgs e)
-        {
-            DialogCommand?.Execute(true);
-        }
-        private void Cancel_OnClick(object sender, RoutedEventArgs e)
-        {
-            DialogCommand?.Execute(false);
-        }
-    }
+    public partial class WorkerWindow : ContentControl
+	{
+		public RelayCommand DialogCommand { get; set; }
+		public WorkerWindow()
+		{
+			InitializeComponent();
+		}
+		private void Ok_OnClick(object sender, RoutedEventArgs e)
+		{
+			DialogCommand?.Execute(true);
+		}
+		private void Cancel_OnClick(object sender, RoutedEventArgs e)
+		{
+			DialogCommand?.Execute(false);
+		}
+	}
 }

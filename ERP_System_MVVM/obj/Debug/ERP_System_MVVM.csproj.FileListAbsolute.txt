@@ -19,7 +19,8 @@ C:\Users\Sony\source\repos\ERP_System_MVVM\ERP_System_MVVM\obj\Debug\ERP_System_
 C:\Users\Sony\source\repos\ERP_System_MVVM\ERP_System_MVVM\obj\Debug\ERP_System_MVVM.csproj.CoreCompileInputs.cache
 C:\Users\Sony\source\repos\ERP_System_MVVM\ERP_System_MVVM\obj\Debug\ERP_System_MVVM.exe
 C:\Users\Sony\source\repos\ERP_System_MVVM\ERP_System_MVVM\obj\Debug\ERP_System_MVVM.pdb
-C:\Users\Sony\source\repos\ERP_System_MVVM\ERP_System_MVVM\bin\Debug\CommonServiceLocator.dll
 C:\Users\Sony\source\repos\ERP_System_MVVM\ERP_System_MVVM\obj\Debug\View\WorkerWindow.g.cs
 C:\Users\Sony\source\repos\ERP_System_MVVM\ERP_System_MVVM\obj\Debug\View\WorkerWindow.baml
 C:\Users\Sony\source\repos\ERP_System_MVVM\ERP_System_MVVM\obj\Debug\ERP_System_MVVM.csproj.CopyComplete
+C:\Users\Sony\source\repos\ERP_System_MVVM\ERP_System_MVVM\bin\Debug\System.Runtime.CompilerServices.Unsafe.dll
+C:\Users\Sony\source\repos\ERP_System_MVVM\ERP_System_MVVM\bin\Debug\System.Runtime.CompilerServices.Unsafe.xml

@@ -1,5 +1,4 @@
-﻿using CommonServiceLocator;
-using ERP_System_MVVM.Infrastructure;
+﻿using ERP_System_MVVM.Infrastructure;
 using ERP_System_MVVM.Model;
 using ERP_System_MVVM.Model.Common;
 using ERP_System_MVVM.Model.Repositoryes;
@@ -21,13 +20,15 @@ namespace ERP_System_MVVM.ViewModel
 {
     public class MainViewModel : ViewModelBase
     {
-        public IWindowFactory WindowFactory => ServiceLocator.Current.GetInstance<IWindowFactory>();
+        public IWindowFactory WindowFactory = new WindowFactory();
         public MainViewModel()
         {
             RemoveWorkerCommand = new RelayCommand(ExecuteRemoveWorkerCommand, CanExecuteRemoveWorkerCommand);
-            AddWorkerCommand = new RelayCommand(ExecuteAddWorkerCommand, CanExecuteAddWorkerCommand);
-            _cvsWorkers = new CollectionViewSource();
-            _cvsWorkers.Source = this.AllWorkers;
+            ChangeWorkerCommand = new RelayCommand(ExecuteChangeWorkerCommand, CanExecuteChangeWorkerCommand);
+            _cvsWorkers = new CollectionViewSource
+            {
+                Source = this.AllWorkers
+            };
             _cvsWorkers.Filter += ApplyFilter;
         }
 
@@ -35,7 +36,7 @@ namespace ERP_System_MVVM.ViewModel
         public RelayCommand RemoveWorkerCommand { get; }
         private void ExecuteRemoveWorkerCommand(object parameter)
         {
-            if (MessageBox.Show("Удалить выбранного сотрудника?", "Удаление", MessageBoxButton.YesNo,
+            if (MessageBox.Show("Delete the selected worker?", "Remov", MessageBoxButton.YesNo,
                         MessageBoxImage.Question, MessageBoxResult.No) == MessageBoxResult.Yes)
             {
                 AllWorkers.Remove(CurrentWorker);
@@ -46,27 +47,28 @@ namespace ERP_System_MVVM.ViewModel
         {
             return CurrentWorker != null;
         }
-        public RelayCommand AddWorkerCommand { get; }
-        private void ExecuteAddWorkerCommand(object parameter)
+        public RelayCommand ChangeWorkerCommand { get; }
+        private void ExecuteChangeWorkerCommand(object parameter)
         {
             var window = WindowFactory.CreateWindow(new WindowCreationOptions()
             {
                 WindowSize = new WindowSize(new Size(350, 170)),
-                Title = "AddWorker",
+                Title = "Change Worker",
             });
             window.SizeToContent = SizeToContent.Height;
-            var detailClientInfoWindow = new WorkerWindow
+            var WorkerWindow = new WorkerWindow
             {
+                DataContext = CurrentWorker,
                 DialogCommand = new RelayCommand(r => window.DialogResult = (bool)r)
             };
-            window.Content = detailClientInfoWindow;
+            window.Content = WorkerWindow;
             var result = window.ShowDialog();
             if (!result != true)
                 return;
         }
-        public bool CanExecuteAddWorkerCommand(object parameter)
+        public bool CanExecuteChangeWorkerCommand(object parameter)
         {
-            return CurrentWorker != null;//!!!!!!!!!!!!!
+            return CurrentWorker != null;
         }
         #endregion
 

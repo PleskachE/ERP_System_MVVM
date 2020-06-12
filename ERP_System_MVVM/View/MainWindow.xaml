@@ -14,8 +14,6 @@
         <local:MainViewModel />
     </Window.DataContext>
 
-
-
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition />
@@ -33,28 +31,28 @@
                 ItemsSource="{Binding AllCVSWorkers}"
                 SelectedItem="{Binding CurrentWorker, Mode=TwoWay}">
                 <DataGrid.Columns>
-                    <DataGridTemplateColumn>
+                    <DataGridTemplateColumn Header="Photo">
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
                                 <Image Source="{Binding Path=Photo}" />
                             </DataTemplate>
                         </DataGridTemplateColumn.CellTemplate>
                     </DataGridTemplateColumn>
-                    <DataGridTemplateColumn SortMemberPath="Name">
+                    <DataGridTemplateColumn Header="Name" SortMemberPath="Name">
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
                                 <TextBlock Text="{Binding Path=Name}" />
                             </DataTemplate>
                         </DataGridTemplateColumn.CellTemplate>
                     </DataGridTemplateColumn>
-                    <DataGridTemplateColumn SortMemberPath="Surname">
+                    <DataGridTemplateColumn Header="Surname" SortMemberPath="Surname">
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
                                 <TextBlock Text="{Binding Path=Surname}" />
                             </DataTemplate>
                         </DataGridTemplateColumn.CellTemplate>
                     </DataGridTemplateColumn>
-                    <DataGridTemplateColumn SortMemberPath="Position">
+                    <DataGridTemplateColumn Header="Position" SortMemberPath="Position">
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
                                 <TextBlock Text="{Binding Path=Position}" />
@@ -66,9 +64,9 @@
         </Grid>
         <Grid Grid.Column="1">
             <Grid.RowDefinitions>
-                <RowDefinition Height="*"/>
-                <RowDefinition Height="auto"/>
-                <RowDefinition Height="*"/>
+                <RowDefinition Height="*" />
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="*" />
             </Grid.RowDefinitions>
             <Grid Grid.Row="0">
                 <Grid.ColumnDefinitions>
@@ -173,11 +171,14 @@
                 </StackPanel>
             </Grid>
             <StackPanel Grid.Row="1" Orientation="Horizontal">
-                <Button Margin="5" 
-                        Content="Remove"
-                        Command="{Binding RemoveWorkerCommand}"/>
-                <Button Margin="5" Content="AddNewWorker" Command="{Binding AddWorkerCommand}"/>
-                <Button Margin="5"/>
+                <Button
+                    Margin="5"
+                    Command="{Binding RemoveWorkerCommand}"
+                    Content="Remove" />
+                <Button
+                    Margin="5"
+                    Command="{Binding ChangeWorkerCommand}"
+                    Content="ChangeWorker" />
             </StackPanel>
             <DataGrid
                 Grid.Row="2"
