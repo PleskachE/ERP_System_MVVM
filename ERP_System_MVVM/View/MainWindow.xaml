@@ -4,11 +4,11 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:local="clr-namespace:ERP_System_MVVM.ViewModel"
+    xmlns:lvc="clr-namespace:LiveCharts.Wpf;assembly=LiveCharts.Wpf"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     Title="ERP_System"
-    Width="1200"
-    Height="500"
-    MinWidth="1200"
+    Width="800"
+    Height="450"
     mc:Ignorable="d">
     <Window.DataContext>
         <local:MainViewModel />
@@ -16,8 +16,8 @@
 
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition />
-            <ColumnDefinition />
+            <ColumnDefinition Width="auto"/>
+            <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
         <Grid Grid.Column="0">
             <Grid.RowDefinitions>
@@ -66,7 +66,7 @@
             <Grid.RowDefinitions>
                 <RowDefinition Height="*" />
                 <RowDefinition Height="auto" />
-                <RowDefinition Height="*" />
+                <RowDefinition Height="auto" />
             </Grid.RowDefinitions>
             <Grid Grid.Row="0">
                 <Grid.ColumnDefinitions>
@@ -96,79 +96,18 @@
                         <TextBlock Text="{Binding CurrentWorker.DateOfBirth}" />
                     </StackPanel>
                 </StackPanel>
-                <StackPanel Grid.Column="1" Orientation="Vertical">
-                    <TextBlock Text="Skills" />
-                    <StackPanel HorizontalAlignment="Right" Orientation="Horizontal">
-                        <TextBlock Text="Development" />
-                        <Grid>
-                            <ProgressBar
-                                MinWidth="150"
-                                Maximum="100"
-                                Minimum="0"
-                                Value="{Binding CurrentWorker.GetSkills.Development}" />
-                            <TextBlock
-                                HorizontalAlignment="Center"
-                                VerticalAlignment="Center"
-                                Text="{Binding CurrentWorker.GetSkills.Development, StringFormat={}{0:0}%}" />
-                        </Grid>
-                    </StackPanel>
-                    <StackPanel HorizontalAlignment="Right" Orientation="Horizontal">
-                        <TextBlock Text="ManagerialEffectiveness" />
-                        <Grid>
-                            <ProgressBar
-                                MinWidth="150"
-                                Maximum="100"
-                                Minimum="0"
-                                Value="{Binding CurrentWorker.GetSkills.ManagerialEffectiveness}" />
-                            <TextBlock
-                                HorizontalAlignment="Center"
-                                VerticalAlignment="Center"
-                                Text="{Binding CurrentWorker.GetSkills.ManagerialEffectiveness, StringFormat={}{0:0}%}" />
-                        </Grid>
-                    </StackPanel>
-                    <StackPanel HorizontalAlignment="Right" Orientation="Horizontal">
-                        <TextBlock Text="PercentageSuccessfullyCompletedProjects" />
-                        <Grid>
-                            <ProgressBar
-                                MinWidth="150"
-                                Maximum="100"
-                                Minimum="0"
-                                Value="{Binding CurrentWorker.GetSkills.PercentageSuccessfullyCompletedProjects}" />
-                            <TextBlock
-                                HorizontalAlignment="Center"
-                                VerticalAlignment="Center"
-                                Text="{Binding CurrentWorker.GetSkills.PercentageSuccessfullyCompletedProjects, StringFormat={}{0:0}%}" />
-                        </Grid>
-                    </StackPanel>
-                    <StackPanel HorizontalAlignment="Right" Orientation="Horizontal">
-                        <TextBlock Text="Productivity" />
-                        <Grid>
-                            <ProgressBar
-                                MinWidth="150"
-                                Maximum="100"
-                                Minimum="0"
-                                Value="{Binding CurrentWorker.GetSkills.Productivity}" />
-                            <TextBlock
-                                HorizontalAlignment="Center"
-                                VerticalAlignment="Center"
-                                Text="{Binding CurrentWorker.GetSkills.Productivity, StringFormat={}{0:0}%}" />
-                        </Grid>
-                    </StackPanel>
-                    <StackPanel HorizontalAlignment="Right" Orientation="Horizontal">
-                        <TextBlock Text="TeamWork" />
-                        <Grid>
-                            <ProgressBar
-                                MinWidth="150"
-                                Maximum="100"
-                                Minimum="0"
-                                Value="{Binding CurrentWorker.GetSkills.TeamWork}" />
-                            <TextBlock
-                                HorizontalAlignment="Center"
-                                VerticalAlignment="Center"
-                                Text="{Binding CurrentWorker.GetSkills.TeamWork, StringFormat={}{0:0}%}" />
-                        </Grid>
-                    </StackPanel>
-                </StackPanel>
+                <Grid Grid.Column="1">
+                    <lvc:CartesianChart Series="{Binding Skills}" LegendLocation="Bottom">
+                        <lvc:CartesianChart.AxisX>
+                            <lvc:Axis Title="Skills" 
+                          Labels="{Binding Labels}" 
+                          Separator="{x:Static lvc:DefaultAxes.CleanSeparator}" />
+                        </lvc:CartesianChart.AxisX>
+                        <lvc:CartesianChart.AxisY>
+                            <lvc:Axis Title="Value" LabelFormatter="{Binding Formatter}" ></lvc:Axis>
+                        </lvc:CartesianChart.AxisY>
+                    </lvc:CartesianChart>
+                </Grid> 
             </Grid>
             <StackPanel Grid.Row="1" Orientation="Horizontal">
                 <Button
@@ -185,42 +124,42 @@
                 AutoGenerateColumns="False"
                 ItemsSource="{Binding CurrentProjects}">
                 <DataGrid.Columns>
-                    <DataGridTemplateColumn>
+                    <DataGridTemplateColumn Header="Id">
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
                                 <TextBlock Text="{Binding Id}" />
                             </DataTemplate>
                         </DataGridTemplateColumn.CellTemplate>
                     </DataGridTemplateColumn>
-                    <DataGridTemplateColumn>
+                    <DataGridTemplateColumn Header="Project Name">
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
                                 <TextBlock Text="{Binding Name}" />
                             </DataTemplate>
                         </DataGridTemplateColumn.CellTemplate>
                     </DataGridTemplateColumn>
-                    <DataGridTemplateColumn>
+                    <DataGridTemplateColumn Header="Client">
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
                                 <TextBlock Text="{Binding Client}" />
                             </DataTemplate>
                         </DataGridTemplateColumn.CellTemplate>
                     </DataGridTemplateColumn>
-                    <DataGridTemplateColumn>
+                    <DataGridTemplateColumn Header="StartDate">
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
                                 <TextBlock Text="{Binding StartDate}" />
                             </DataTemplate>
                         </DataGridTemplateColumn.CellTemplate>
                     </DataGridTemplateColumn>
-                    <DataGridTemplateColumn>
+                    <DataGridTemplateColumn Header="EndDate">
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
                                 <TextBlock Text="{Binding EndDate}" />
                             </DataTemplate>
                         </DataGridTemplateColumn.CellTemplate>
                     </DataGridTemplateColumn>
-                    <DataGridTemplateColumn>
+                    <DataGridTemplateColumn Header="PercentageCompletion">
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
                                 <TextBlock Text="{Binding PercentageCompletion}" />

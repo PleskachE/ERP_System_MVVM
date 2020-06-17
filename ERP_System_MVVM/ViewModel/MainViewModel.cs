@@ -4,6 +4,10 @@ using ERP_System_MVVM.Model.Common;
 using ERP_System_MVVM.Model.Repositoryes;
 using ERP_System_MVVM.Services.WindowFactory;
 using ERP_System_MVVM.View;
+using LiveCharts;
+using LiveCharts.Defaults;
+using LiveCharts.Helpers;
+using LiveCharts.Wpf;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -30,6 +34,7 @@ namespace ERP_System_MVVM.ViewModel
                 Source = this.AllWorkers
             };
             _cvsWorkers.Filter += ApplyFilter;
+            Formatter = value => value + " %";
         }
 
         #region command
@@ -108,13 +113,14 @@ namespace ERP_System_MVVM.ViewModel
             get
             { if (_currentWorker == null)
                     return new Worker();
-               return _currentWorker;
+                return _currentWorker;
             }
             set
             {
                 _currentWorker = value;
-                if(_currentWorker != null)
+                if (_currentWorker != null)
                     CurrentProjects = GetCurrentProjects(_currentWorker.Id);
+                Builds();
                 OnPropertyChanged();
             }
         }
@@ -126,7 +132,7 @@ namespace ERP_System_MVVM.ViewModel
         private ObservableCollection<Project> _currentProjects;
         public ObservableCollection<Project> CurrentProjects
         {
-            get 
+            get
             {
                 if (_currentProjects == null)
                     return _currentProjects = new ObservableCollection<Project>();
@@ -145,6 +151,32 @@ namespace ERP_System_MVVM.ViewModel
                 if (item.WorkersId.FindAll(x => x == _id).Count != 0)
                     _tempProjects.Add(item);
             return _tempProjects;
+        }
+        #endregion
+
+        #region charts
+        public string[] Labels => new[] { "Development", "Productivity", "TeamWork",
+            "%CompletedProjects", "ManagerialEffectiveness" };
+
+        public Func<double, string> Formatter { get; set; }
+        private ChartValues<ObservableValue> _skillsValues { get; set; }
+        public SeriesCollection Skills { get; set; }
+        private void Builds()
+        {
+            if (_skillsValues == null)
+                _skillsValues = new ChartValues<ObservableValue>();
+            _skillsValues.Clear();
+            foreach (int item in CurrentWorker.GetSkills.AllSkills())
+                _skillsValues.Add(new ObservableValue(item));
+            Skills = new SeriesCollection()
+                {
+                    new StackedColumnSeries()
+                    {
+                        Values = _skillsValues,
+                        StackMode = StackMode.Values,
+                        DataLabels = true,
+                    }
+                };
         }
         #endregion
     }

@@ -24,3 +24,9 @@ C:\Users\Sony\source\repos\ERP_System_MVVM\ERP_System_MVVM\obj\Debug\View\Worker
 C:\Users\Sony\source\repos\ERP_System_MVVM\ERP_System_MVVM\obj\Debug\ERP_System_MVVM.csproj.CopyComplete
 C:\Users\Sony\source\repos\ERP_System_MVVM\ERP_System_MVVM\bin\Debug\System.Runtime.CompilerServices.Unsafe.dll
 C:\Users\Sony\source\repos\ERP_System_MVVM\ERP_System_MVVM\bin\Debug\System.Runtime.CompilerServices.Unsafe.xml
+C:\Users\Sony\source\repos\ERP_System_MVVM\ERP_System_MVVM\bin\Debug\LiveCharts.dll
+C:\Users\Sony\source\repos\ERP_System_MVVM\ERP_System_MVVM\bin\Debug\LiveCharts.Wpf.dll
+C:\Users\Sony\source\repos\ERP_System_MVVM\ERP_System_MVVM\bin\Debug\LiveCharts.pdb
+C:\Users\Sony\source\repos\ERP_System_MVVM\ERP_System_MVVM\bin\Debug\LiveCharts.xml
+C:\Users\Sony\source\repos\ERP_System_MVVM\ERP_System_MVVM\bin\Debug\LiveCharts.Wpf.pdb
+C:\Users\Sony\source\repos\ERP_System_MVVM\ERP_System_MVVM\bin\Debug\LiveCharts.Wpf.xml

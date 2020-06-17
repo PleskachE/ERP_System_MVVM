@@ -14,5 +14,10 @@ namespace ERP_System_MVVM.Model.Common
         public int ManagerialEffectiveness { get; set; }
         public int Productivity { get; set; }
         public Skills() { }
+        public int[] AllSkills()
+        {
+           return new int[5] { Development, TeamWork, 
+                PercentageSuccessfullyCompletedProjects, ManagerialEffectiveness, Productivity };
+        }
     }
 }
