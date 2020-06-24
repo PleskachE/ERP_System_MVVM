@@ -6,26 +6,42 @@
     xmlns:local="clr-namespace:ERP_System_MVVM.View"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
+
     <StackPanel Orientation="Vertical">
         <StackPanel Orientation="Horizontal">
             <TextBlock Margin="10" Text="Name" />
-            <TextBox Margin="5" Text="{Binding Name}" />
+            <TextBox
+                MinWidth="100"
+                Margin="5"
+                Text="{Binding Name}" />
         </StackPanel>
         <StackPanel Orientation="Horizontal">
             <TextBlock Margin="10" Text="Surname" />
-            <TextBox Margin="5" Text="{Binding Surname}" />
+            <TextBox
+                MinWidth="100"
+                Margin="5"
+                Text="{Binding Surname}" />
         </StackPanel>
         <StackPanel Orientation="Horizontal">
             <TextBlock Margin="10" Text="Date Of Birth" />
-            <TextBox Margin="5" Text="{Binding DateOfBirth}" />
+            <TextBox
+                MinWidth="100"
+                Margin="5"
+                Text="{Binding DateOfBirth, StringFormat='{}{0:dd.MM.yyyy}'}" />
         </StackPanel>
         <StackPanel Orientation="Horizontal">
             <TextBlock Margin="10" Text="Salary" />
-            <TextBox Margin="5" Text="{Binding Salary}" />
+            <TextBox
+                MinWidth="100"
+                Margin="5"
+                Text="{Binding Salary}" />
         </StackPanel>
         <StackPanel Orientation="Horizontal">
             <TextBlock Margin="10" Text="Position" />
-            <TextBox Margin="5" Text="{Binding Position}" />
+            <TextBox
+                MinWidth="100"
+                Margin="5"
+                Text="{Binding Position}" />
         </StackPanel>
         <StackPanel HorizontalAlignment="Center" Orientation="Horizontal">
             <Button

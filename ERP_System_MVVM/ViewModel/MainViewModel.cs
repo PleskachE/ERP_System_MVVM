@@ -1,24 +1,16 @@
 ﻿using ERP_System_MVVM.Infrastructure;
 using ERP_System_MVVM.Model;
-using ERP_System_MVVM.Model.Common;
 using ERP_System_MVVM.Model.Repositoryes;
 using ERP_System_MVVM.Services.WindowFactory;
 using ERP_System_MVVM.View;
 using LiveCharts;
 using LiveCharts.Defaults;
-using LiveCharts.Helpers;
 using LiveCharts.Wpf;
 using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
-using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Data;
-using System.Windows.Threading;
 
 namespace ERP_System_MVVM.ViewModel
 {
